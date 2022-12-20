@@ -1,0 +1,179 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100%;
+    overflow: auto;
+    padding: 50px 100px;
+    & .form{
+        margin-top: 20px;
+        height: auto;
+        width: 100%;
+        border: 2px solid white;
+        border-radius: 10px;
+        padding: 10px 50px 30px;
+        & .row{
+            display: flex;
+            width: 100%;
+            margin: 20px 0;
+            justify-content: space-between;
+        }
+        & .button_row{
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        & p{
+            font-size: 20px;
+            margin-bottom: 5px;
+            
+        }
+        & .skill_title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            & > svg{
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+        & .skill_list{
+            padding-top: 5px;
+            margin-bottom: 20px;
+            & .skill_container{
+                margin-bottom: 20px;
+                width: 100%;
+                padding: 5px;
+                border-radius: 5px;
+                border: 1px solid white;
+                margin-right: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                & .skill_name{
+                    font-size: 22px;
+                }
+                & > p{
+                    font-size: 0.5em;
+                    
+                }
+                .icons_list{
+                    display: flex;
+                    font-size: 25px;
+                    & > svg{
+                        cursor: pointer;
+                        margin-left: 10px;
+                        &.edit:hover{
+                            color: #646cff;
+                        }
+                        &.delete:hover{
+                            color: red;
+                        }
+                    }
+                }
+                &:hover{
+                    background-color: gray;
+                }
+                & > svg{
+                    color: red;
+                    cursor: pointer;
+                    
+                    opacity: 1;
+                }
+            }
+        }
+
+        .target_title{
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            & > p{
+                margin-bottom: 0;
+                font-size: 22px;
+                margin-right: 5px;
+            }
+            & > svg{
+                font-size: 22px;
+                cursor: pointer;
+            }
+        }
+        
+
+        .modal{
+            color: black;
+            background-color: white;
+            width: 500px;
+            padding: 30px 40px;
+            border-radius: 10px;
+            overflow: auto;
+            & .item_list{
+                max-height: 400px;
+                overflow-y: auto;
+
+                & .item{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid black;
+                border-radius: 5px;
+                width: 100%;
+                padding: 10px 5px;
+                margin-bottom: 10px;
+                & > p {
+                    width: 80%;
+                    margin-bottom: 0;
+                }
+                & > svg {
+                    width: 10%;
+                    font-size: 22px;
+                    cursor: pointer;
+                    &.edit:hover{
+                        color: #646cff;
+                    }
+                    &.delete:hover{
+                        color: red;
+                    }
+                }
+            }
+            }
+            
+            & .modal_btn{
+                width: 100%;
+                text-align: center;
+                color: white;
+            }
+            & .modal_row{
+                display: flex;
+                color: black;
+                justify-content: space-between;
+                & .row_item{
+                    width: 45%;
+                }
+                &  input{
+                    border-color: black;
+                    color: black ;
+                    margin-bottom: 10px;
+                }
+                & svg{
+                    color: white;
+                }
+            }
+            & > h2{
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            
+            & > textarea{
+                border-color: black;
+                color: black;
+                margin-bottom: 10px;
+            }
+            & .button_row{
+                color: white;
+            }
+        }
+    }
+}

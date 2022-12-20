@@ -1,0 +1,129 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100%;
+    overflow: auto;
+    padding: 50px 100px;
+    & .form{
+        margin-top: 20px;
+        height: auto;
+        width: 100%;
+        border: 2px solid white;
+        border-radius: 10px;
+        padding: 10px 50px 30px;
+        & .row{
+            display: flex;
+            width: 100%;
+            margin: 20px 0;
+            justify-content: space-between;
+        }
+        & .button_row{
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        & p{
+            font-size: 20px;
+            margin-bottom: 5px;
+            
+        }
+        & .tool_title{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 20px;
+            & > svg{
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+        & .tool_list{
+            display: flex;
+            padding-top: 5px;
+            margin-bottom: 20px;
+            & .tool{
+                width: auto;
+                padding: 5px;
+                border-radius: 5px;
+                border: 1px solid white;
+                margin-right: 10px;
+                position: relative;
+                &:hover{
+                    background-color: gray;
+                    & > svg{
+                        opacity: 1;
+                    }
+                }
+                & >svg{
+                    color: red;
+                    cursor: pointer;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    opacity: 0;
+                }
+            }
+        }
+        & .exhibit_list{
+            padding-top: 5px;
+            margin-bottom: 20px;
+            & .exhibit{
+                margin-bottom: 20px;
+                width: 100%;
+                padding: 5px;
+                border-radius: 5px;
+                border: 1px solid white;
+                margin-right: 10px;
+                position: relative;
+                & .exhibit_name{
+                    font-size: 22px;
+                }
+                & > p{
+                    font-size: 0.5em;
+                    
+                }
+                &:hover{
+                    background-color: gray;
+                }
+                & > svg{
+                    color: red;
+                    cursor: pointer;
+                    position: absolute;
+                    top: 50%;
+                    right: 0%;
+                    transform: translate(-50%,-50%);
+                    opacity: 1;
+                    font-size: 25px;
+                }
+            }
+        }
+        .modal{
+            color: black;
+            background-color: white;
+            width: auto;
+            padding: 30px 40px;
+            border-radius: 10px;
+            & > h2{
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            & > input{
+                border-color: black;
+                color: black;
+                margin-bottom: 10px;
+            }
+            & > textarea{
+                border-color: black;
+                color: black;
+                margin-bottom: 10px;
+            }
+            & .button_row{
+                color: white;
+            }
+        }
+    }
+}

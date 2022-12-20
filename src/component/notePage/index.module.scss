@@ -1,0 +1,61 @@
+.experience{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    overflow: auto;
+    padding: 50px 100px;
+    
+    & .title{
+        width: 100%;
+        text-align: center;
+        position: relative;
+        & a{
+            font-size: 30px;
+            height: 30px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            &:hover{
+                color: #646cff;
+            }
+        }
+        & > svg{
+            cursor: pointer;
+            color: white;
+            
+            
+        }
+    }
+    & .work_card{
+        width: 100%;
+        color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 5px 10px;
+        margin: 10px 0 ;
+        position: relative;
+        & .button_list{
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            & a{
+                font-size: 24px;
+                &:hover{
+                    color: #646cff;
+                }
+            }
+            & > svg{
+                cursor: pointer;
+                font-size: 24px;
+                margin: 0 10px;
+                &:hover{
+                    color: red;
+                }
+            }
+        }
+    }
+}
