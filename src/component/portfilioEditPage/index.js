@@ -24,9 +24,7 @@ export default function PortfilioEditPage() {
       zh_introduction:'',en_introduction:'',
       tools:[],
     })
-
   const [isSetting,setIsSetting] = useState(false)
-
 
   const handle_reset = () =>{
     setInput(data)
@@ -37,9 +35,6 @@ export default function PortfilioEditPage() {
     update_User_Collection_Data('portfilio','portfilio_list',input.zh_portfilio_name,input)
     setIsSetting(false)
   }
-
-
-
 
   const handle_delete_tool = (tool_name) =>{
     const yes = window.confirm('你確定嗎？');
@@ -105,7 +100,6 @@ export default function PortfilioEditPage() {
     </div>
   )
 }
-
 
 const PictureList = ({input,setInput,isSetting}) =>{
   const imgUpload_ref = useRef(null)
