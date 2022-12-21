@@ -22,7 +22,7 @@ import {
 
 function App() {
   return (
-  <BrowserRouter basename={'https://charonyuu.github.io/backstage_resume'}>
+  <BrowserRouter>
     <div className={styles.app}>
       <AuthProvider>
         <Switch>
