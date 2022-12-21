@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from "./index.module.scss"
 import { useAuth } from "../../context/AuthContext"
-import { Input,Row_Input,Small_Btn ,Textarea ,Modal} from '../things'
+import { Input,RowInput,SmallBtn ,Textarea ,Modal} from '../things'
 import { useLocation } from 'react-router-dom'
 import { AiOutlineRight,AiFillDelete } from "react-icons/ai";
 
@@ -55,6 +55,7 @@ export default function PortfilioEditPage() {
     }
     setData(state_data)
     setInput(state_data)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 
@@ -66,8 +67,8 @@ export default function PortfilioEditPage() {
           <Input title={'作品集網址'} setting={isSetting} value={input.portifilio_url} func={(e) => setInput({ ...input, portifilio_url: e.target.value })} placeholder={"輸入網址"}/>
 
           <div className={styles.row}>
-            <Row_Input title={'作品中文名稱'} setting={isSetting} value={input.zh_portfilio_name} func={(e) => setInput({ ...input, zh_portfilio_name: e.target.value })} placeholder={"輸入名稱"}/>
-            <Row_Input title={'作品英文名稱'} setting={isSetting} value={input.en_portfilio_name} func={(e) => setInput({ ...input, en_portfilio_name: e.target.value })} placeholder={"輸入名稱"}/>
+            <RowInput title={'作品中文名稱'} setting={isSetting} value={input.zh_portfilio_name} func={(e) => setInput({ ...input, zh_portfilio_name: e.target.value })} placeholder={"輸入名稱"}/>
+            <RowInput title={'作品英文名稱'} setting={isSetting} value={input.en_portfilio_name} func={(e) => setInput({ ...input, en_portfilio_name: e.target.value })} placeholder={"輸入名稱"}/>
           </div>
           <Textarea title={'作品中文簡介'} setting={isSetting} value={input.zh_introduction} func={(e) => setInput({ ...input, zh_introduction: e.target.value })} placeholder={"輸入內容..."}/>
           <Textarea title={'作品英文簡介'} setting={isSetting} value={input.en_introduction} func={(e) => setInput({ ...input, en_introduction: e.target.value })} placeholder={"輸入內容..."}/>
@@ -86,11 +87,11 @@ export default function PortfilioEditPage() {
 
           <div className={styles.button_row}>
             {!isSetting ?
-              <Small_Btn title='修改' func={()=>setIsSetting(true)}/>
+              <SmallBtn title='修改' func={()=>setIsSetting(true)}/>
             :
             <>
-              <Small_Btn title='取消' func={handle_reset}/>
-              <Small_Btn title='儲存' func={handle_save}/>
+              <SmallBtn title='取消' func={handle_reset}/>
+              <SmallBtn title='儲存' func={handle_save}/>
             </>
              }
           </div>
@@ -183,8 +184,8 @@ const ToolModal = ({input,setInput,setModalOpen}) =>{
         <p>工具名稱:</p>
         <input type="text" ref={tool_ref} placeholder='請輸入工具名稱'/>
         <div className={styles.button_row}>
-          <Small_Btn title='取消' func={handle_modal_close}/>
-          <Small_Btn title='儲存' func={handle_tool_save}/>
+          <SmallBtn title='取消' func={handle_modal_close}/>
+          <SmallBtn title='儲存' func={handle_tool_save}/>
         </div>
       </div>
     </Modal>

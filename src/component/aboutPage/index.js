@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./index.module.scss"
 import { useAuth } from "../../context/AuthContext"
-import { Small_Btn,Modal} from '../things'
+import { SmallBtn,Modal} from '../things'
 import { AiOutlineEdit,AiFillDelete,AiOutlineRight,AiOutlinePlus } from "react-icons/ai";
 
 export default function AboutPage() {
@@ -46,6 +46,7 @@ export default function AboutPage() {
       setInput(data)
       setLoading(false)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   return  (
     <div className={styles.home}>
@@ -107,11 +108,11 @@ export default function AboutPage() {
 
           <div className={styles.button_row}>
             {!isSetting ?
-              <Small_Btn title='修改' func={()=>setIsSetting(true)}/>
+              <SmallBtn title='修改' func={()=>setIsSetting(true)}/>
             :
             <>
-              <Small_Btn title='取消' func={handle_reset}/>
-              <Small_Btn title='儲存' func={handle_save}/>
+              <SmallBtn title='取消' func={handle_reset}/>
+              <SmallBtn title='儲存' func={handle_save}/>
             </>
              }
           </div>
@@ -144,6 +145,7 @@ const TargetModal = (props) =>{
   useEffect(()=>{
     const list = modalOpen.data || []
     setModalList(list)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const handle_modal_add_item = () =>{
@@ -168,7 +170,7 @@ const TargetModal = (props) =>{
       <p>{modalOpen.title}</p>
         <div className={styles.modal_row}>
           <input value={contentInput} onChange={(e)=>setContentInput(e.target.value)}/>
-          <Small_Btn title='+' func={handle_modal_add_item}/>
+          <SmallBtn title='+' func={handle_modal_add_item}/>
         </div>
         <div className={styles.item_list}>
           
@@ -180,8 +182,8 @@ const TargetModal = (props) =>{
           )}
         </div>
         <div className={styles.button_row}>
-          <Small_Btn title='取消' func={closeModal}/>
-          <Small_Btn title='完成' func={handle_modal_save}/>
+          <SmallBtn title='取消' func={closeModal}/>
+          <SmallBtn title='完成' func={handle_modal_save}/>
         </div>
     </div>
   </Modal>
@@ -198,6 +200,7 @@ const SkillModal = (props) =>{
       setTitleInput({sort:modalOpen.data.sort,title:modalOpen.data.title})
       setList(modalOpen.data.content)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const handle_modal_add_item = () =>{
@@ -241,7 +244,7 @@ const SkillModal = (props) =>{
         </div>
         <div className={styles.modal_row}>
           <input value={contentInput} onChange={(e)=>setContentInput(e.target.value)}/>
-          <Small_Btn title='+' func={handle_modal_add_item}/>
+          <SmallBtn title='+' func={handle_modal_add_item}/>
         </div>
         <div className={styles.item_list}>
           
@@ -253,8 +256,8 @@ const SkillModal = (props) =>{
           )}
         </div>
         <div className={styles.button_row}>
-          <Small_Btn title='取消' func={closeModal}/>
-          <Small_Btn title='完成' func={handle_modal_save}/>
+          <SmallBtn title='取消' func={closeModal}/>
+          <SmallBtn title='完成' func={handle_modal_save}/>
         </div>
     </div>
   </Modal>

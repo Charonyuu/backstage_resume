@@ -25,6 +25,7 @@ export default function ExperiencePage() {
   }
   useEffect(()=>{
     fetch_Data();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   return (

@@ -14,7 +14,7 @@ export function Input({title,value,func,setting,placeholder}) {
   )
 }
 
-export function Row_Input({title,value,func,setting,placeholder}) {
+export function RowInput({title,value,func,setting,placeholder}) {
   return (
     <div className={styles.row_item}>
         <p>{title}</p>
@@ -60,7 +60,7 @@ export function Picture_List({data}) {
   )
 }
 
-export function Small_Btn({title,func}) {
+export function SmallBtn({title,func}) {
     
   return (
     <div className={styles.btn} onClick={func}>{title}</div>

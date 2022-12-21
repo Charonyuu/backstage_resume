@@ -6,7 +6,7 @@ import { storage } from "../../firebaseConfig";
 
 import {ReactComponent as Upload} from '../../assets/upload_icon.svg';
 import {ReactComponent as Delete} from '../../assets/delete_icon.svg';
-import { Small_Btn,Row_Input,Textarea } from '../things';
+import { SmallBtn,RowInput,Textarea } from '../things';
 
 //storage
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
@@ -86,6 +86,7 @@ export default function HomePage() {
       setInput(data)
       setLoading(false)
     })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   return (
@@ -113,12 +114,12 @@ export default function HomePage() {
           </div>
           
           <div className={styles.row}>
-              <Row_Input title={'中文姓名'} setting={isSetting} value={input.zh_name} func={(e) => setInput({ ...input, zh_name: e.target.value })}/>
-              <Row_Input title={'英文姓名'} setting={isSetting} value={input.en_name} func={(e) => setInput({ ...input, en_name: e.target.value })}/>
+              <RowInput title={'中文姓名'} setting={isSetting} value={input.zh_name} func={(e) => setInput({ ...input, zh_name: e.target.value })}/>
+              <RowInput title={'英文姓名'} setting={isSetting} value={input.en_name} func={(e) => setInput({ ...input, en_name: e.target.value })}/>
           </div>
           <div className={styles.row}>
-            <Row_Input title={'中文職位'} setting={isSetting} value={input.zh_title} func={(e) => setInput({ ...input, zh_title: e.target.value })}/>
-            <Row_Input title={'英文職位'} setting={isSetting} value={input.en_title} func={(e) => setInput({ ...input, en_title: e.target.value })}/>
+            <RowInput title={'中文職位'} setting={isSetting} value={input.zh_title} func={(e) => setInput({ ...input, zh_title: e.target.value })}/>
+            <RowInput title={'英文職位'} setting={isSetting} value={input.en_title} func={(e) => setInput({ ...input, en_title: e.target.value })}/>
           </div>
           <Textarea title={'中文簡介'} setting={isSetting} value={input.zh_introduction} func={(e) => setInput({ ...input, zh_introduction: e.target.value })}/>
           <Textarea title={'英文簡介'} setting={isSetting} value={input.en_introduction} func={(e) => setInput({ ...input, en_introduction: e.target.value })}/>
@@ -126,22 +127,22 @@ export default function HomePage() {
           <div className={styles.contact}>
             <p>聯絡方式</p>
             <div className={styles.row}>
-              <Row_Input title={'phone'} setting={isSetting} value={input.contact.phone} func={(e) => setInput({ ...input, contact: {...input.contact,'phone': e.target.value}})}/>
-              <Row_Input title={'email'} setting={isSetting} value={input.contact.email} func={(e) => setInput({ ...input, contact: {...input.contact,'email': e.target.value}})}/>
+              <RowInput title={'phone'} setting={isSetting} value={input.contact.phone} func={(e) => setInput({ ...input, contact: {...input.contact,'phone': e.target.value}})}/>
+              <RowInput title={'email'} setting={isSetting} value={input.contact.email} func={(e) => setInput({ ...input, contact: {...input.contact,'email': e.target.value}})}/>
             </div>
             <div className={styles.row}>
-              <Row_Input title={'github'} setting={isSetting} value={input.contact.github} func={(e) => setInput({ ...input, contact: {...input.contact,'github': e.target.value}})}/>
-              <Row_Input title={'linkedin'} setting={isSetting} value={input.contact.linkedin} func={(e) => setInput({ ...input, contact: {...input.contact,'linkedin': e.target.value}})}/>
+              <RowInput title={'github'} setting={isSetting} value={input.contact.github} func={(e) => setInput({ ...input, contact: {...input.contact,'github': e.target.value}})}/>
+              <RowInput title={'linkedin'} setting={isSetting} value={input.contact.linkedin} func={(e) => setInput({ ...input, contact: {...input.contact,'linkedin': e.target.value}})}/>
             </div>
           </div>
 
           <div className={styles.button_row}>
             {!isSetting ?
-              <Small_Btn title='修改' func={()=>setIsSetting(true)}/>
+              <SmallBtn title='修改' func={()=>setIsSetting(true)}/>
             :
             <>
-              <Small_Btn title='取消' func={handle_reset}/>
-              <Small_Btn title='儲存' func={handle_save}/>
+              <SmallBtn title='取消' func={handle_reset}/>
+              <SmallBtn title='儲存' func={handle_save}/>
             </>
              }
           </div>

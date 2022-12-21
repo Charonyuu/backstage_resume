@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from "./index.module.scss"
-import { Input,Small_Btn} from '../things'
+import { Input,SmallBtn} from '../things'
 import { useLocation } from 'react-router-dom'
 import { AiFillDelete } from "react-icons/ai";
 import { MdOutlineAdd } from "react-icons/md";
 
 import { useQuill } from 'react-quilljs';
 import { storage } from "../../firebaseConfig";
-import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 import { useAuth } from "../../context/AuthContext"
 
@@ -22,6 +22,7 @@ export default function ExperienceEditPage() {
     const state_data = location.state
     if (!state_data) return;
     setInput(state_data)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   return  (
@@ -34,9 +35,9 @@ export default function ExperienceEditPage() {
             func={(e) => setInput({ ...input, title: e.target.value })} 
             placeholder={"請輸入標題"}
           />
-          <Quill_Container input={input} setInput={setInput}/>
-          <Keyword_Container input={input} setInput={setInput} />
-          <Button_Group input={input}/>
+          <QuillContainer input={input} setInput={setInput}/>
+          <KeywordContainer input={input} setInput={setInput} />
+          <ButtonGroup input={input}/>
         </div>
     </div>
   )
@@ -44,7 +45,7 @@ export default function ExperienceEditPage() {
 
 
 
-const Quill_Container = ({input,setInput}) =>{
+const QuillContainer = ({input,setInput}) =>{
   const { quill,quillRef } = useQuill();
 
   useEffect(() => {
@@ -55,7 +56,7 @@ const Quill_Container = ({input,setInput}) =>{
         setInput({ ...input, content: quill.root.innerHTML})
       });
     }
-    
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quill]);
 
   const insertToEditor = (url) => {
@@ -93,7 +94,7 @@ const Quill_Container = ({input,setInput}) =>{
   )
 }
 
-const Keyword_Container = ({input,setInput}) =>{
+const KeywordContainer = ({input,setInput}) =>{
     const keywordRef = useRef(null)
 
     const handle_add_keyword = () =>{
@@ -118,7 +119,7 @@ const Keyword_Container = ({input,setInput}) =>{
       
       <p className={styles.keyword_title}>關鍵字:</p>
       <div className={styles.keyword_list}>
-        {input.keyword.length == 0 ? <p>暫無關鍵字</p> : null}
+        {input.keyword.length === 0 ? <p>暫無關鍵字</p> : null}
         {input.keyword.map((item,idx) =>
           <div className={styles.keyword} key={idx}>
             {item}
@@ -130,7 +131,7 @@ const Keyword_Container = ({input,setInput}) =>{
   )
 }
 
-const Button_Group = ({input}) =>{
+const ButtonGroup = ({input}) =>{
   const {update_User_Collection_Data} = useAuth()
   const saveData = () => {
     if (input.id) return update_User_Collection_Data('note','note_list',input.title,input);
@@ -150,8 +151,8 @@ const Button_Group = ({input}) =>{
   }
   return(
     <div className={styles.button_row}>
-      <Small_Btn title='取消' func={() => window.history.back()}/>
-      <Small_Btn title='儲存' func={saveData}/>
+      <SmallBtn title='取消' func={() => window.history.back()}/>
+      <SmallBtn title='儲存' func={saveData}/>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from "./index.module.scss"
 import { useAuth } from "../../context/AuthContext"
-import { Row_Input,Small_Btn ,Textarea ,Modal} from '../things'
+import { RowInput,SmallBtn ,Textarea ,Modal} from '../things'
 import { useLocation } from 'react-router-dom'
 import { AiOutlineRight,AiFillDelete } from "react-icons/ai";
 
@@ -64,6 +64,7 @@ export default function ExperienceEditPage() {
     }
     setData(state_data)
     setInput(state_data)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 
@@ -72,16 +73,16 @@ export default function ExperienceEditPage() {
         <h1>工作經歷修改</h1>
         <div className={styles.form}>
           <div className={styles.row}>
-              <Row_Input title={'開始工作日期'} setting={isSetting} value={input.startDate} func={(e) => setInput({ ...input, startDate: e.target.value })} placeholder={"西元年/月"}/>
-              <Row_Input title={'結束工作日期'} setting={isSetting} value={input.endDate} func={(e) => setInput({ ...input, endDate: e.target.value })}  placeholder={"西元年/月"}/>
+              <RowInput title={'開始工作日期'} setting={isSetting} value={input.startDate} func={(e) => setInput({ ...input, startDate: e.target.value })} placeholder={"西元年/月"}/>
+              <RowInput title={'結束工作日期'} setting={isSetting} value={input.endDate} func={(e) => setInput({ ...input, endDate: e.target.value })}  placeholder={"西元年/月"}/>
           </div>
           <div className={styles.row}>
-              <Row_Input title={'中文公司名稱'} setting={isSetting} value={input.zh_company_name} func={(e) => setInput({ ...input, zh_company_name: e.target.value })} placeholder={"輸入名稱"}/>
-              <Row_Input title={'英文公司名稱'} setting={isSetting} value={input.en_company_name} func={(e) => setInput({ ...input, en_company_name: e.target.value })} placeholder={"輸入名稱"}/>
+              <RowInput title={'中文公司名稱'} setting={isSetting} value={input.zh_company_name} func={(e) => setInput({ ...input, zh_company_name: e.target.value })} placeholder={"輸入名稱"}/>
+              <RowInput title={'英文公司名稱'} setting={isSetting} value={input.en_company_name} func={(e) => setInput({ ...input, en_company_name: e.target.value })} placeholder={"輸入名稱"}/>
           </div>
           <div className={styles.row}>
-            <Row_Input title={'中文公司職位'} setting={isSetting} value={input.zh_title} func={(e) => setInput({ ...input, zh_title: e.target.value })} placeholder={"輸入職位"}/>
-            <Row_Input title={'英文公司職位'} setting={isSetting} value={input.en_title} func={(e) => setInput({ ...input, en_title: e.target.value })} placeholder={"輸入職位"}/>
+            <RowInput title={'中文公司職位'} setting={isSetting} value={input.zh_title} func={(e) => setInput({ ...input, zh_title: e.target.value })} placeholder={"輸入職位"}/>
+            <RowInput title={'英文公司職位'} setting={isSetting} value={input.en_title} func={(e) => setInput({ ...input, en_title: e.target.value })} placeholder={"輸入職位"}/>
           </div>
           <Textarea title={'中文公司簡介'} setting={isSetting} value={input.zh_introduction} func={(e) => setInput({ ...input, zh_introduction: e.target.value })} placeholder={"輸入內容..."}/>
           <Textarea title={'英文公司簡介'} setting={isSetting} value={input.en_introduction} func={(e) => setInput({ ...input, en_introduction: e.target.value })} placeholder={"輸入內容..."}/>
@@ -115,11 +116,11 @@ export default function ExperienceEditPage() {
 
           <div className={styles.button_row}>
             {!isSetting ?
-              <Small_Btn title='修改' func={()=>setIsSetting(true)}/>
+              <SmallBtn title='修改' func={()=>setIsSetting(true)}/>
             :
             <>
-              <Small_Btn title='取消' func={handle_reset}/>
-              <Small_Btn title='儲存' func={handle_save}/>
+              <SmallBtn title='取消' func={handle_reset}/>
+              <SmallBtn title='儲存' func={handle_save}/>
             </>
              }
           </div>
@@ -185,8 +186,8 @@ const ExperienceModal = ({id,input,setInput,closeModal}) =>{
         </>
       } 
       <div className={styles.button_row}>
-        <Small_Btn title='取消' func={closeModal}/>
-        <Small_Btn title='儲存' func={id === 'tool' ? handle_tool_save : handle_exhibit_save}/>
+        <SmallBtn title='取消' func={closeModal}/>
+        <SmallBtn title='儲存' func={id === 'tool' ? handle_tool_save : handle_exhibit_save}/>
       </div>
       </div>
     </Modal>
