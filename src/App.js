@@ -22,7 +22,7 @@ import {
 
 function App() {
   return (
-  <Router>
+  <Router basename={'https://charonyuu.github.io/backstage_resume'}>
     <div className={styles.app}>
       <AuthProvider>
         <Switch>
