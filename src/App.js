@@ -13,7 +13,7 @@ import styles from './app.module.scss'
 import { useAuth,AuthProvider } from "./context/AuthContext"
 import Nav from './component/nav'
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route,
   Redirect,
@@ -22,7 +22,7 @@ import {
 
 function App() {
   return (
-  <Router basename={'https://charonyuu.github.io/backstage_resume'}>
+  <BrowserRouter basename={'https://charonyuu.github.io/backstage_resume'}>
     <div className={styles.app}>
       <AuthProvider>
         <Switch>
@@ -72,7 +72,7 @@ function App() {
         </Switch>
       </AuthProvider>
     </div>
-  </Router>
+  </BrowserRouter>
   )
 }
 
