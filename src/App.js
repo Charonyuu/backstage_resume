@@ -59,16 +59,16 @@ function App() {
               <PortfilioEditPage />
             </Nav>
           </PrivateRoute>
-          <Route  path="/note">
+          <PrivateRoute  path="/note">
             <Nav>
               <NotePage />
             </Nav>
-          </Route>
-          <Route  path="/note_edit/:note_name">
+          </PrivateRoute>
+          <PrivateRoute  path="/note_edit/:note_name">
             <Nav>
               <NoteEditPage />
             </Nav>
-          </Route>
+          </PrivateRoute>
         </Switch>
       </AuthProvider>
     </div>

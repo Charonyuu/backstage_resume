@@ -150,7 +150,7 @@ const ButtonGroup = ({input,content}) =>{
         day = '0' + day;
 
     const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-'),content}
-    update_User_Collection_Data('note','note_list',input.id,temp)
+    update_User_Collection_Data('note','note_list',temp.id,temp)
   }
   const goBack = () =>{
     history.push('/note')
