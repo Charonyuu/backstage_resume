@@ -9,7 +9,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  let history = useHistory();
+  const history = useHistory();
   const [loginStatus, setLoginStatus] = useState(false)
 
   function login() {
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
   const update_User_Collection_Data = async(collection_name,collection_list,update_name,data) =>{
     await setDoc(doc(db, "user", collection_name,collection_list,update_name), data);
     alert('儲存成功')
-    history.back()
+    history.goBack()
   }
   const delete_User_Collection_Data = async(collection_name,collection_list,delete_name)=>{
     const yes = window.confirm('確定刪除嗎？')

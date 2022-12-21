@@ -10,18 +10,21 @@ import { storage } from "../../firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 import { useAuth } from "../../context/AuthContext"
+import { useHistory } from 'react-router-dom';
 
 export default function ExperienceEditPage() {
   const [input,setInput] =useState({
       Date:'',id:null,
-      title:'',content:'',keyword:[],
+      title:'',keyword:[],
     })
+    const [content,setContent] = useState('')
   const location = useLocation();
 
   useEffect(()=>{
     const state_data = location.state
     if (!state_data) return;
     setInput(state_data)
+    setContent(state_data.content)
       // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -35,9 +38,9 @@ export default function ExperienceEditPage() {
             func={(e) => setInput({ ...input, title: e.target.value })} 
             placeholder={"請輸入標題"}
           />
-          <QuillContainer input={input} setInput={setInput}/>
+          <QuillContainer content={content} setContent={setContent}/>
           <KeywordContainer input={input} setInput={setInput} />
-          <ButtonGroup input={input}/>
+          <ButtonGroup input={input} content={content}/>
         </div>
     </div>
   )
@@ -45,20 +48,19 @@ export default function ExperienceEditPage() {
 
 
 
-const QuillContainer = ({input,setInput}) =>{
+const QuillContainer = ({content,setContent}) =>{
   const { quill,quillRef } = useQuill();
 
   useEffect(() => {
     if (quill) {
-      quill.clipboard.dangerouslyPasteHTML(input.content);
+      quill.clipboard.dangerouslyPasteHTML(content);
       quill.getModule('toolbar').addHandler('image', selectLocalImage);
-      quill.on('text-change', () => {
-        setInput({ ...input, content: quill.root.innerHTML})
+      quill.on('text-change', (delta, oldDelta, source) => {
+        setContent(quillRef.current.firstChild.innerHTML)
       });
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quill]);
-
   const insertToEditor = (url) => {
     const range = quill.getSelection();
     quill.insertEmbed(range.index, 'image', url);
@@ -131,10 +133,11 @@ const KeywordContainer = ({input,setInput}) =>{
   )
 }
 
-const ButtonGroup = ({input}) =>{
+const ButtonGroup = ({input,content}) =>{
   const {update_User_Collection_Data} = useAuth()
+  const history = useHistory()
   const saveData = () => {
-    if (input.id) return update_User_Collection_Data('note','note_list',input.title,input);
+    if (input.id) return update_User_Collection_Data('note','note_list',input.id,input);
 
     let d = new Date(),
         month = '' + (d.getMonth() + 1),
@@ -146,12 +149,16 @@ const ButtonGroup = ({input}) =>{
     if (day.length < 2) 
         day = '0' + day;
 
-    const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-')}
-    update_User_Collection_Data('note','note_list',input.title,temp)
+    const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-'),content}
+    update_User_Collection_Data('note','note_list',input.id,temp)
   }
+  const goBack = () =>{
+    history.push('/note')
+  }
+  console.log(input.keyword)
   return(
     <div className={styles.button_row}>
-      <SmallBtn title='取消' func={() => window.history.back()}/>
+      <SmallBtn title='取消' func={goBack}/>
       <SmallBtn title='儲存' func={saveData}/>
     </div>
   )
