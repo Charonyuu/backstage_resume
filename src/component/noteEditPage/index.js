@@ -56,7 +56,12 @@ const QuillContainer = ({content,setContent}) =>{
       quill.clipboard.dangerouslyPasteHTML(content);
       quill.getModule('toolbar').addHandler('image', selectLocalImage);
       quill.on('text-change', (delta, oldDelta, source) => {
-        setContent(quillRef.current.firstChild.innerHTML)
+        setContent(
+          {
+            text: quillRef.current.firstChild.innerHTML,
+            clearText: quill.getText()
+          }
+        )
       });
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -137,20 +142,25 @@ const ButtonGroup = ({input,content}) =>{
   const {update_User_Collection_Data} = useAuth()
   const history = useHistory()
   const saveData = () => {
-    if (input.id) return update_User_Collection_Data('note','note_list',input.id,input);
+    if (input.id) {
+      const temp = {...input,content: content.text,clearText: content.clearText}
 
-    let d = new Date(),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+      update_User_Collection_Data('note','note_list',input.id,temp);
+    }else{
 
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
+      let d = new Date(),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
 
-    const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-'),content}
-    update_User_Collection_Data('note','note_list',temp.id,temp)
+      if (month.length < 2) 
+          month = '0' + month;
+      if (day.length < 2) 
+          day = '0' + day;
+
+      const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-'),content}
+      update_User_Collection_Data('note','note_list',temp.id,temp)
+    }
   }
   const goBack = () =>{
     history.push('/note')
