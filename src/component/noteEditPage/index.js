@@ -143,20 +143,23 @@ const ButtonGroup = ({input,content}) =>{
   const {update_User_Collection_Data} = useAuth()
   const history = useHistory()
   const saveData = () => {
-    if (input.id) return update_User_Collection_Data('note','note_list',input.id,input);
-
-    let d = new Date(),
+    if (input.id){ 
+      const temp  = {...input,content}
+      update_User_Collection_Data('note','note_list',input.id,temp);
+    }else{
+      let d = new Date(),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
+      if (month.length < 2) 
+          month = '0' + month;
+      if (day.length < 2) 
+          day = '0' + day;
 
-    const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-'),content}
-    update_User_Collection_Data('note','note_list',temp.id,temp)
+      const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-'),content}
+      update_User_Collection_Data('note','note_list',temp.id,temp)
+    }
   }
   const goBack = () =>{
     history.push('/note')
