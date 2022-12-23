@@ -22,7 +22,7 @@ export default function ExperienceEditPage() {
 
   useEffect(()=>{
     const state_data = location.state
-    if (!state_data) return;
+    if (!state_data) return setInput({...input,id:new Date().getTime().toString()});
     setInput(state_data)
     setContent(state_data.content)
       // eslint-disable-next-line react-hooks/exhaustive-deps
