@@ -44,7 +44,7 @@ export default function ExperienceEditPage() {
             func={(e) => setInput({ ...input, intro: e.target.value })} 
             placeholder={"請輸入簡介"}
           />
-          <QuillContainer content={content} setContent={setContent}/>
+          <QuillContainer id={input.id} content={content} setContent={setContent}/>
           <KeywordContainer input={input} setInput={setInput} />
           <ButtonGroup input={input} content={content}/>
         </div>
@@ -54,7 +54,7 @@ export default function ExperienceEditPage() {
 
 
 
-const QuillContainer = ({content,setContent}) =>{
+const QuillContainer = ({id,content,setContent}) =>{
   const { quill,quillRef } = useQuill();
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const QuillContainer = ({content,setContent}) =>{
   };
 
   const saveToServer = async (file) => {
-    const storageRef = ref(storage, `image/note/${file.name}`);
+    const storageRef = ref(storage, `image/note/${id}/${file.name}`);
     await uploadBytes(storageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         insertToEditor(url);
