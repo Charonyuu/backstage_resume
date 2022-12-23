@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function ExperienceEditPage() {
   const [input,setInput] =useState({
-      Date:'',id:null,
+      Date:'',intro:'',id:null,
       title:'',keyword:[],
     })
     const [content,setContent] = useState('')
@@ -38,6 +38,12 @@ export default function ExperienceEditPage() {
             func={(e) => setInput({ ...input, title: e.target.value })} 
             placeholder={"請輸入標題"}
           />
+          <Input 
+            title={'簡介'} 
+            value={input.intro} 
+            func={(e) => setInput({ ...input, intro: e.target.value })} 
+            placeholder={"請輸入簡介"}
+          />
           <QuillContainer content={content} setContent={setContent}/>
           <KeywordContainer input={input} setInput={setInput} />
           <ButtonGroup input={input} content={content}/>
@@ -56,12 +62,7 @@ const QuillContainer = ({content,setContent}) =>{
       quill.clipboard.dangerouslyPasteHTML(content);
       quill.getModule('toolbar').addHandler('image', selectLocalImage);
       quill.on('text-change', (delta, oldDelta, source) => {
-        setContent(
-          {
-            text: quillRef.current.firstChild.innerHTML,
-            clearText: quill.getText()
-          }
-        )
+        setContent(quillRef.current.firstChild.innerHTML)
       });
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -142,25 +143,20 @@ const ButtonGroup = ({input,content}) =>{
   const {update_User_Collection_Data} = useAuth()
   const history = useHistory()
   const saveData = () => {
-    if (input.id) {
-      const temp = {...input,content: content.text,clearText: content.clearText}
+    if (input.id) return update_User_Collection_Data('note','note_list',input.id,input);
 
-      update_User_Collection_Data('note','note_list',input.id,temp);
-    }else{
+    let d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
-      let d = new Date(),
-          month = '' + (d.getMonth() + 1),
-          day = '' + d.getDate(),
-          year = d.getFullYear();
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
 
-      if (month.length < 2) 
-          month = '0' + month;
-      if (day.length < 2) 
-          day = '0' + day;
-
-      const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-'),content}
-      update_User_Collection_Data('note','note_list',temp.id,temp)
-    }
+    const temp = {...input,id: new Date().getTime().toString(), Date:[year, month, day].join('-'),content}
+    update_User_Collection_Data('note','note_list',temp.id,temp)
   }
   const goBack = () =>{
     history.push('/note')
